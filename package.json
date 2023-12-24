@@ -1,0 +1,23 @@
+{
+  "name": "backend-prod-grade",
+  "version": "1.0.0",
+  "description": "production grade backend file structure",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "Chai",
+    "aur",
+    "backend",
+    "ke",
+    "saath"
+  ],
+  "author": "Niraj Chaudhari",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.1"
+  }
+}
