@@ -16,4 +16,12 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
+//import routes
+import userRouter from "./routes/user.routes.js";
+
+//routes declaration
+app.use("/api/v1/users", userRouter);
+//the url will become http://localhost:3000/api/v1/users/register
+// as soon as it will land on users it will check on userRouter and will go to file and execute the next route in this case it is register the user
+
 export { app };
