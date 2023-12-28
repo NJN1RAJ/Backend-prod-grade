@@ -5,6 +5,7 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const registerUser = asyncHandler(async (req, res) => {
   const { fullname, email, password, username } = req.body;
+  console.log(req.body);
   console.log(fullname);
 
   if (
@@ -35,7 +36,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Avatar is required");
   }
 
-  const user = User.create({
+  const user = await User.create({
     fullname,
     avatar: avatar.url,
     coverImage: coverImage?.url || "",
@@ -43,6 +44,12 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
     username: username.toLowerCase(),
   });
+
+  const createdUser = User.findById(user._id).select("-password -refreshToken");
+
+  if (!createdUser) {
+    throw new ApiError(500, "Something went wrong while registering the user");
+  }
 });
 
 export { registerUser };
